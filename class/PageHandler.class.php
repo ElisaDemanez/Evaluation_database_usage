@@ -10,7 +10,7 @@ class PageHandler
             
         }
         else {
-       include 'controller/'.$page .'.php';
+       include 'controllers/'.$page .'.php';
         }
     }
 }

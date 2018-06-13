@@ -2,10 +2,8 @@
 
 /**
  * Class Autoloader
- */
-
+*/
 spl_autoload_register('Autoloader::autoload');
-
 
 class Autoloader{    
 
