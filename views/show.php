@@ -6,9 +6,13 @@
     <h2 class="responsive_title">Gestion des réservations</h2>
 </div>
   
+
 </div>
 <!-- responsive-table -->
 <div class="container">
+    <div>
+        <a class='waves-effect waves-light btn' href='?page=create' >Nouvelle réservation</a>
+    </div>
     <table class ="stripped highlight centered ">
         <thead>
             <tr>

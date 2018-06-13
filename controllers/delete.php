@@ -11,7 +11,8 @@ if(!isset($_GET['number'])) {
 } 
 
 else {
-    $reservation = new Reservation($_GET['number']);
+    $reservation = new Reservation;
+    $reservation->fromDB($_GET['number']);
 
     if(!$reservation->id) {
 
@@ -21,7 +22,7 @@ else {
     else if(isset($_POST['deletionConfirmation'])) {
 
         $reservation->delete();
-        header('/');
+        header('');
     }
 
     else { 
@@ -35,7 +36,7 @@ else {
         $pageInformation.=  "<form class='center-align' method='post'> Êtes-vous sûr-e de vouloir supprimer la réservation n° $reservation->id :
         
             <div>
-            <strong> $reservation->clientFirstName $reservation->clientLastName / Chambre n°$reservation->chambreId 
+            <strong> $reservation->clientFirstName $reservation->clientLastName / Chambre n°$reservation->roomNumber
             <span class='hide-on-med-and-down' >
                 </br >
             </span>
