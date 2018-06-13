@@ -16,7 +16,7 @@ foreach ($reservations as $key => $reservation) {
     <td class='hide-on-med-and-down' > Du $dateEntree au $dateSortie</td>
     <td class='hide-on-med-and-down' >$reservation[statut]</td>
     <td> 
-    <a class='waves-effect waves-light btn'>Éditer</a>
+    <a class='waves-effect waves-light btn'href='?page=create&id=$reservation[id]'>Éditer</a>
     <a class='waves-effect waves-light btn' href='?page=delete&number=$reservation[id]'>Supprimer</a></td>
     </tr>";
 }

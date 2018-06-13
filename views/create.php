@@ -66,7 +66,7 @@
 </div>
      <div class="row">
     <div class="input-field col s12 m6 push-m3 center-align">
-        retour
+        <a href='/'>retour <a>
     </div>
 </div>
 </div>

@@ -12,6 +12,10 @@ class Reservation {
     public $statut;
     // public $dateModif;
     // $id = null, $clientId, $chambreID, $dateDebut,$dateFin,$status,$dateModif
+    public function __construct( $id = null ) {
+
+        $this->id =$id;
+    }
     public function create (int $clientId, int $chambreId, $dateDebut, $dateFin, $statut ) {
 
             $this->clientId = $clientId;
@@ -23,7 +27,9 @@ class Reservation {
     
     public function fromDB ($id) {
         
-        $stm = DB::connect()->prepare("SELECT reservations.id, clients.nom, clients.prenom, chambres.numero, reservations.dateEntree, reservations.dateSortie from reservations 
+        $stm = DB::connect()->prepare("SELECT reservations.id, 
+        reservations.clientId, clients.nom, clients.prenom,
+        reservations.chambreId, chambres.numero, reservations.dateEntree, reservations.dateSortie from reservations 
         join clients on reservations.clientId = clients.id 
          join chambres on reservations.chambreId = chambres.id 
          WHERE reservations.id = :id");
@@ -31,6 +37,8 @@ class Reservation {
         $reservation= $stm->fetch();
 
         $this->id = $reservation['id'];
+        $this->clientId = $reservation['clientId'];
+        $this->chambreId = $reservation['chambreId'];
         $this->clientFirstName = $reservation['prenom'];
         $this->clientLastName = $reservation['nom'];
         $this->roomNumber= $reservation['numero'];
@@ -44,10 +52,22 @@ class Reservation {
         $stm = DB::connect()->prepare("DELETE FROM `reservations` WHERE reservations.id = :id ");
         $stm->execute(array( ':id' => $id));
     }
-   
-public function setInDB() {
-    $stm = DB::connect()->prepare("INSERT INTO `reservations` ( `clientId`, `chambreId`, `dateEntree`, `dateSortie`, `statut` ) VALUES (:clientId, :roomId, :dateEntree , :dateSortie, :statut)");
-    $stm->execute(array(':clientId' => $this->clientId, ':roomId' => $this->chambreId, ':dateEntree'  => $this->dateDebut , ':dateSortie'  => $this->dateFin, ':statut' => $this->statut ));
+    
+    public function setInDB() {
+        $stm = DB::connect()->prepare("INSERT INTO `reservations` ( `clientId`, `chambreId`, `dateEntree`, `dateSortie`, `statut` ) VALUES (:clientId, :roomId, :dateEntree , :dateSortie, :statut)");
+        $stm->execute(array(':clientId' => $this->clientId, ':roomId' => $this->chambreId, ':dateEntree'  => $this->dateDebut , ':dateSortie'  => $this->dateFin, ':statut' => $this->statut ));
 
-}
+    }
+    public function updateInDB() {
+
+       
+
+        $stm = DB::connect()->prepare(
+        "UPDATE reservations 
+        SET `clientId` = :clientId , `chambreId` = :roomId, `dateEntree` = :dateEntree ,`dateSortie`= :dateSortie,`statut` = :statut 
+        WHERE reservations.id = :id ");
+
+        $stm->execute(array(':clientId' => $this->clientId, ':roomId' => $this->chambreId, ':dateEntree'  => $this->dateDebut , ':dateSortie'  => $this->dateFin, ':statut' => $this->statut, ':id' => $this->id ));
+
+    }
 }

@@ -23,8 +23,7 @@ else {
     else if(isset($_POST['deletionConfirmation'])) {
         // var_dump($reservation);
         $reservation->delete();
-        $pageInformation.= "<div class= 'align-center'> Suppression effectuée ! </div>";
-        require_once('views/delete.php');
+   
         header('Location: /');
           // header("refresh:1, $_SERVER[HTTP_HOST]/");
   
@@ -37,7 +36,7 @@ else {
         $dateSortie = new DateTime($reservation->dateFin);
         $dateSortie =$dateSortie->format("m/d/y");
         
-
+        $pageInformation.= "<div class= 'align-center'> Suppression effectuée ! </div>";
         $pageInformation.=  "<form class='center-align' method='post' action=''> Êtes-vous sûr-e de vouloir supprimer la réservation n° $reservation->id :
         
             <div>
