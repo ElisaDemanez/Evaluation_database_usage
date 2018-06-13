@@ -30,8 +30,6 @@ class Reservation {
         $id = $this->id;
         $stm = DB::connect()->prepare("DELETE FROM `reservations` WHERE reservations.id = $id ");
         $stm->execute();
-        // $reservation= $stm->fetch();
-
     }
    
 

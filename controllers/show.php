@@ -21,5 +21,5 @@ foreach ($reservations as $key => $reservation) {
     </tr>";
 }
 
-require_once('views/reservations_show.php')
+require_once('views/show.php')
 ?>

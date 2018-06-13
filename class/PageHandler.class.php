@@ -6,7 +6,7 @@ class PageHandler
 
     
         if(!$page) {
-       include 'controllers/reservations_show.php';
+       include 'controllers/show.php';
             
         }
         else {

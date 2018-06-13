@@ -13,15 +13,15 @@ if(!isset($_GET['number'])) {
 else {
     $reservation = new Reservation($_GET['number']);
 
-    if(!$reservation->id)
-    {
+    if(!$reservation->id) {
+
         $pageInformation.= $error;
     }
 
     else if(isset($_POST['deletionConfirmation'])) {
-    var_dump('here');
-    $reservation->delete();
-    header('/');
+
+        $reservation->delete();
+        header('/');
     }
 
     else { 
@@ -54,8 +54,8 @@ else {
             </form>";
     }
 
-        require_once('views/delete.php');
-        return;
+   require_once('views/delete.php');
+   return;
 }
 
 // function returnView() {
