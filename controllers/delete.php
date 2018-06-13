@@ -14,15 +14,20 @@ else {
     $reservation = new Reservation;
     $reservation->fromDB($_GET['number']);
 
+
     if(!$reservation->id) {
 
         $pageInformation.= $error;
     }
 
     else if(isset($_POST['deletionConfirmation'])) {
-
+        // var_dump($reservation);
         $reservation->delete();
-        header('');
+        $pageInformation.= "<div class= 'align-center'> Suppression effectuée ! </div>";
+        require_once('views/delete.php');
+        header('Location: /');
+          // header("refresh:1, $_SERVER[HTTP_HOST]/");
+  
     }
 
     else { 
@@ -33,7 +38,7 @@ else {
         $dateSortie =$dateSortie->format("m/d/y");
         
 
-        $pageInformation.=  "<form class='center-align' method='post'> Êtes-vous sûr-e de vouloir supprimer la réservation n° $reservation->id :
+        $pageInformation.=  "<form class='center-align' method='post' action=''> Êtes-vous sûr-e de vouloir supprimer la réservation n° $reservation->id :
         
             <div>
             <strong> $reservation->clientFirstName $reservation->clientLastName / Chambre n°$reservation->roomNumber

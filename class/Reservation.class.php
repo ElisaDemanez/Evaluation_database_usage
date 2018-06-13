@@ -23,9 +23,11 @@ class Reservation {
     
     public function fromDB ($id) {
         
-        $stm = DB::connect()->prepare("SELECT reservations.id, clients.nom, clients.prenom, reservations.numero, reservations.dateEntree, reservations.dateSortie from reservations 
-        join clients on reservations.clientId = clients.id WHERE reservations.id = $id");
-        $stm->execute();
+        $stm = DB::connect()->prepare("SELECT reservations.id, clients.nom, clients.prenom, chambres.numero, reservations.dateEntree, reservations.dateSortie from reservations 
+        join clients on reservations.clientId = clients.id 
+         join chambres on reservations.chambreId = chambres.id 
+         WHERE reservations.id = :id");
+        $stm->execute(array(':id'=> $id));
         $reservation= $stm->fetch();
 
         $this->id = $reservation['id'];
@@ -38,9 +40,9 @@ class Reservation {
     }
     public function delete() {
         $id = $this->id;
-        //need var in execute
-        $stm = DB::connect()->prepare("DELETE FROM `reservations` WHERE reservations.id = $id ");
-        $stm->execute();
+      
+        $stm = DB::connect()->prepare("DELETE FROM `reservations` WHERE reservations.id = :id ");
+        $stm->execute(array( ':id' => $id));
     }
    
 public function setInDB() {

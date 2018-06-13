@@ -11,7 +11,7 @@ foreach ($reservations as $key => $reservation) {
    $tableInformations .= "<tr>
     <td>$reservation[id] </td>
     <td><span class='hide-on-med-and-down' > $reservation[prenom]  </span> $reservation[nom] </td>
-    <td>$reservation[chambreId]</td>
+    <td>$reservation[numero]</td>
     <td class='hide-on-med-and-up' >$dateEntree</td>
     <td class='hide-on-med-and-down' > Du $dateEntree au $dateSortie</td>
     <td class='hide-on-med-and-down' >$reservation[statut]</td>
