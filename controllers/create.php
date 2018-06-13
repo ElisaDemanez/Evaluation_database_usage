@@ -69,7 +69,7 @@ if(isset($reservation->id)) :
 
         var dateEntree = '<?= $reservation->dateDebut ?>'
         var dateSortie = '<?= $reservation->dateFin ?>'
-        console.log(dateEntree)
+    
         document.getElementById('dateEntree').value = dateEntree.split(' ')[0]
         document.getElementById('dateSortie').value = dateSortie.split(' ')[0]
     </script>

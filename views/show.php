@@ -11,13 +11,13 @@
 <!-- responsive-table -->
 <div class="container">
     <div>
-        <a class='waves-effect waves-light btn' href='?page=create' >Nouvelle réservation</a>
+        <a class='waves-effect waves-light btn' href='?page=create' >Ajouter/modifier réservation</a>
     </div>
     <table class ="stripped highlight centered ">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Id Client</th>
+                <th>Client</th>
                 <th>N° Chambre</th>
                 <th class="hide-on-med-and-up">Date</th>
                 <th class="hide-on-med-and-down">Dates</th>             
